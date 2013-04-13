@@ -1,5 +1,8 @@
 ConferenceTracker::Application.routes.draw do
+  get "events/new"
+
   resources :users
+  resources :events
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup', to: 'users#new'

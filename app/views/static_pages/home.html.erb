@@ -1,13 +1,14 @@
 <div class="center hero-unit">
-  <h1>San Francisco Bay Area</h1>
+  <h1>Events in SF Bay Area</h1>
 
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+  <div style = "margin-top:60px; margin-bottom: 20px">
+  	<div class = "datebar">
+  		Today - April 12, 2013
+  	</div>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  	<%= render @events %>
+
+  </div>
 </div>
 
 <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
