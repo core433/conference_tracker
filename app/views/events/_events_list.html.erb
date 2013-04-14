@@ -1,0 +1,13 @@
+<!-- Go through the next 10 days -->
+<% for @a_date in getDatesToDisplay() %>
+	<div class = "datebar">
+		<%= @a_date.strftime("%A, %b %d, %Y").html_safe %>
+  	</div>
+  	<% for @an_event in @events %>
+  		<% if @a_date.strftime("%m/%d/%Y") == @an_event.time.strftime("%m/%d/%Y") %>
+  			<div style="margin-top:4px; text-align:left">
+				<%= @an_event.time.strftime("%I:%M %p") %> - <b><%= @an_event.name %></b> ... <i><%= @an_event.city %></i>
+			</div>
+		<% end %>
+	<% end %>
+<% end %>
