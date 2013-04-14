@@ -7,6 +7,9 @@ require "date"
 # run the following command:
 #
 # bundle exec rails runner "eval(File.read 'script/parser.rb')"
+#
+# to run on heroku, use the following command:
+# heroku run rails runner script/parser.rb
 
 PAGE_URL = "http://www.workit.com/events/cityevents.cfm"
 
