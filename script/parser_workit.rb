@@ -21,7 +21,7 @@ include EventsHelper
 #   bundle exec rails runner "eval(File.read 'script/parser_workit.rb')"
 #
 # To run on deployed Heroku app:
-#   heroku run rails runner script/parser.rb
+#   heroku run rails runner script/parser_workit.rb
 #
 #
 
