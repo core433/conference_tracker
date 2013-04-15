@@ -2,21 +2,30 @@
 <div class="center hero-unit">
   <h3><%= @event.name %></h3>
 
-  <div style = "margin-top:60px; margin-bottom: 20px; text-align: left; width:80%">
-  	<div><%= @event.city %></div>
-  	<div><%= @event.event_type %></div>
-  	<div><%= @event.field %></div>
-  	<div><%= @event.host %></div>
-  	<div><%= @event.description %></div>
-  	<div><%= @event.cost %></div>
-  	<div><%= @event.ticket_url %></div>
-  	<div><%= @event.ticket_info %></div>
-  	<div><%= @event.organization_description %></div>
-  	<div><%= @event.contact %></div>
-  	<div><%= @event.contact_phone %></div>
-  	<div><%= @event.venue %></div>
-  	<div><%= @event.venue_addr %></div>
-  	<div><%= @event.venue_directions %></div>
+  <div class="container-fluid" style = "margin-top:40px; margin-bottom: 20px; text-align: left;">
+
+  	<% labels = ["City", "Event Type", "Event Field", "Hosted By", "Description",
+  		"Cost", "Ticket URL", "Ticket Info", "Organization Description", "Contact Info", 
+  		"Contact Phone", "Venue", "Venue Address", "Venue Directions"] %>
+  	<% contents = [@event.city, @event.event_type, @event.field, @event.host, @event.description,
+  		@event.cost, @event.ticket_url, @event.ticket_info, @event.organization_description,
+  		@event.contact, @event.contact_phone, @event.venue, @event.venue_addr, @event.venue_directions] %>
+
+  	<% for i in 0..labels.length %>
+  		<% if i % 2 == 0 %>
+  			<div class = "row-fluid" style="background-color: #ddd; margin-bottom:0px; padding-top:6px">
+  		<% else %>
+  			<div class = "row-fluid" style="background-color: #eee; margin-bottom:0px; padding-top:6px">
+  		<% end %>
+  			<div class = "span2">
+  				<b><%= labels[i] %></b>
+  			</div>
+  			<div class = "span10">
+  				<%= contents[i] %>
+  			</div>
+  		</div>
+  	<% end %>
+
 
   	
 

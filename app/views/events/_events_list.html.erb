@@ -3,9 +3,14 @@
 	<div class = "datebar">
 		<%= @a_date.strftime("%A, %b %d, %Y").html_safe %>
   	</div>
+  	<% bg_counter = 0 %>
   	<% @events.each do |event| %>
   		<% if @a_date.strftime("%m/%d/%Y") == event.time.strftime("%m/%d/%Y") %>
-  			<div class="row-fluid" style="background-color: #ddd; margin-bottom:-12px; padding-top:6px">
+  			<% if bg_counter % 2 == 0 %>
+  				<div class="row-fluid" style="background-color: #ddd; padding-top:6px">
+  			<% else %>
+  				<div class="row-fluid" style="background-color: #eee; padding-top:6px">
+  			<% end %>
   				<div class="span2" style="text-align:left">
   					<%= event.time.strftime("%I:%M %p") %>
   				</div>
@@ -16,7 +21,7 @@
 					<%= event.city %>
 				</div>
 			</div>
-			<br/>
 		<% end %>
+		<% bg_counter += 1 %>
 	<% end %>
 <% end %>
