@@ -3,11 +3,20 @@
 	<div class = "datebar">
 		<%= @a_date.strftime("%A, %b %d, %Y").html_safe %>
   	</div>
-  	<% for @an_event in @events %>
-  		<% if @a_date.strftime("%m/%d/%Y") == @an_event.time.strftime("%m/%d/%Y") %>
-  			<div style="margin-top:4px; text-align:left">
-				<%= @an_event.time.strftime("%I:%M %p") %> - <b><%= @an_event.name %></b> ... <i><%= @an_event.city %></i>
+  	<% @events.each do |event| %>
+  		<% if @a_date.strftime("%m/%d/%Y") == event.time.strftime("%m/%d/%Y") %>
+  			<div class="row-fluid" style="background-color: #ddd; margin-bottom:-12px; padding-top:6px">
+  				<div class="span2" style="text-align:left">
+  					<%= event.time.strftime("%I:%M %p") %>
+  				</div>
+  				<div class="span8" style="text-align:left">
+					<%= link_to event.name, event, {:style=>'color:#115599'} %>
+				</div>
+				<div class="span2" style="text-align:right">
+					<%= event.city %>
+				</div>
 			</div>
+			<br/>
 		<% end %>
 	<% end %>
 <% end %>

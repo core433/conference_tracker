@@ -3,6 +3,8 @@ require "open-uri"
 require "nokogiri"
 require "date"
 
+include EventsHelper
+
 # To run in rails environment (so it goes on server),
 # run the following command:
 #
@@ -15,50 +17,9 @@ PAGE_URL = "http://www.workit.com/events/cityevents.cfm"
 
 page = Nokogiri::HTML(open(PAGE_URL))
 
-debug = false
+debug = true
 
 cur_datetime = nil
-
-def getMonthIntByMonthName(month_name)
-	month_name = month_name.downcase
-	months_array = ['january', 'february', 'march', 'april', 'may', 'june', 'july',
-		'august', 'september', 'october', 'november', 'december']
-	months_short_array = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug',
-		'sep', 'oct', 'nov', 'dec']
-
-	month_index = months_array.index( month_name )
-	month_short_index = months_short_array.index( month_name )
-
-	if month_index != nil
-		return month_index + 1
-	end
-
-	if month_short_index != nil
-		return month_short_index + 1
-	end
-
-	return 1
-end
-
-# @time_string is e.g., 5:30PM
-# @date_time holds the year, month, and day
-# return a combined datetime object with the hour, mins, day, month, year
-def getTimeByString(time_string, datetime)
-
-	colon_i = time_string.index(':')
-	minutes = time_string[colon_i+1.. colon_i+2].to_i
-	hours = time_string[0.. colon_i-1].to_i
-
-	am_pm_string = time_string[-2,2].downcase
-	if am_pm_string == "pm"
-		hours += 12
-	end
-
-	#puts hours.to_s + ":" + minutes.to_s + "/" + am_pm_string
-
-	return DateTime.new(datetime.year, datetime.month, datetime.day, hours, minutes)
-
-end
 
 # WORKIT.COM
 # Getting the dates and event entries
@@ -101,7 +62,7 @@ nodes.each do |node|
 		event_name = content_arr[1].strip
 		event_city = content_arr[2].strip
 
-		event_datetime = getTimeByString(event_time, cur_datetime)
+		event_datetime = getDateTimeByString(event_time, cur_datetime)
 
 		puts event_name + " - " + event_city + " - " + event_datetime.strftime("%m/%d/%Y, %H:%M")
 
