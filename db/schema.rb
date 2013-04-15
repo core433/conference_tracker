@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415000216) do
+ActiveRecord::Schema.define(:version => 20130415011732) do
 
   create_table "events", :force => true do |t|
-    t.string   "name"
-    t.string   "city"
+    t.text     "name"
+    t.text     "city"
     t.datetime "time"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -23,16 +23,16 @@ ActiveRecord::Schema.define(:version => 20130415000216) do
     t.string   "event_type"
     t.string   "field"
     t.string   "host"
-    t.string   "description"
+    t.text     "description"
     t.string   "cost"
-    t.string   "ticket_url"
-    t.string   "ticket_info"
-    t.string   "organization_description"
-    t.string   "contact"
+    t.text     "ticket_url"
+    t.text     "ticket_info"
+    t.text     "organization_description"
+    t.text     "contact"
     t.string   "contact_phone"
-    t.string   "venue"
+    t.text     "venue"
     t.string   "venue_addr"
-    t.string   "venue_directions"
+    t.text     "venue_directions"
   end
 
   create_table "users", :force => true do |t|
